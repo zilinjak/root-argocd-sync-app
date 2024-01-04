@@ -14,3 +14,6 @@ spec:
     repoURL: https://github.com/zilinjak/foo-app.git
     targetRevision: HEAD
     path: chart
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
