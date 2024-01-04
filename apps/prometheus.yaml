@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    repoURL: https://github.com/zilinjak/foo-app.git
+    repoURL: https://github.com/zilinjak/prometheus-grafana-k8s-test.git
     targetRevision: HEAD
     path: prometheus
   syncPolicy:
