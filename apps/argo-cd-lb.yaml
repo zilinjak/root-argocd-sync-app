@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   selector:
-    name: argocd-server
+    app.kubernetes.io/name: argocd-server
   ports:
     - name: argocd-server-port
       port: 6001
