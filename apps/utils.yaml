@@ -25,9 +25,9 @@ spec:
         repoURL: 'https://github.com/zilinjak/artemis-mq-kafka.git'  # Replace with your Git repository URL
         path: '{{path.path}}'
         targetRevision: HEAD
-      syncOptions:
-        - CreateNamespace=true
       syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
         automated:
           prune: true
           selfHeal: true
