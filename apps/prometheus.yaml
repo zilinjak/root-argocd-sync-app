@@ -3,11 +3,11 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: 25.0-alertmanager
+  name: stable-alertmanager
   labels:
     helm.sh/chart: alertmanager-1.7.0
     app.kubernetes.io/name: alertmanager
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: "v0.26.0"
     app.kubernetes.io/managed-by: Helm
   namespace: default
@@ -23,9 +23,9 @@ metadata:
     app.kubernetes.io/component: metrics
     app.kubernetes.io/part-of: kube-state-metrics
     app.kubernetes.io/name: kube-state-metrics
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: "2.10.1"
-  name: 25.0-kube-state-metrics
+  name: stable-kube-state-metrics
   namespace: default
 imagePullSecrets:
 ---
@@ -33,7 +33,7 @@ imagePullSecrets:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: 25.0-prometheus-node-exporter
+  name: stable-prometheus-node-exporter
   namespace: default
   labels:
     helm.sh/chart: prometheus-node-exporter-4.24.0
@@ -41,7 +41,7 @@ metadata:
     app.kubernetes.io/component: metrics
     app.kubernetes.io/part-of: prometheus-node-exporter
     app.kubernetes.io/name: prometheus-node-exporter
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: "1.7.0"
 ---
 # Source: prometheus/charts/prometheus-pushgateway/templates/serviceaccount.yaml
@@ -51,10 +51,10 @@ metadata:
   labels:
     helm.sh/chart: prometheus-pushgateway-2.4.2
     app.kubernetes.io/name: prometheus-pushgateway
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: "v1.6.2"
     app.kubernetes.io/managed-by: Helm
-  name: 25.0-prometheus-pushgateway
+  name: stable-prometheus-pushgateway
   namespace: default
 ---
 # Source: prometheus/templates/serviceaccount.yaml
@@ -64,12 +64,12 @@ metadata:
   labels:
     app.kubernetes.io/component: server
     app.kubernetes.io/name: prometheus
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: v2.48.1
     helm.sh/chart: prometheus-25.8.2
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: prometheus
-  name: 25.0-prometheus-server
+  name: stable-prometheus-server
   namespace: default
   annotations:
     {}
@@ -78,11 +78,11 @@ metadata:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: 25.0-alertmanager
+  name: stable-alertmanager
   labels:
     helm.sh/chart: alertmanager-1.7.0
     app.kubernetes.io/name: alertmanager
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: "v0.26.0"
     app.kubernetes.io/managed-by: Helm
   namespace: default
@@ -106,12 +106,12 @@ metadata:
   labels:
     app.kubernetes.io/component: server
     app.kubernetes.io/name: prometheus
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: v2.48.1
     helm.sh/chart: prometheus-25.8.2
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: prometheus
-  name: 25.0-prometheus-server
+  name: stable-prometheus-server
   namespace: default
 data:
   allow-snippet-annotations: "false"
@@ -441,7 +441,7 @@ data:
           regex: default
           action: keep
         - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_instance]
-          regex: 25.0
+          regex: stable
           action: keep
         - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_name]
           regex: alertmanager
@@ -461,12 +461,12 @@ metadata:
   labels:
     app.kubernetes.io/component: server
     app.kubernetes.io/name: prometheus
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: v2.48.1
     helm.sh/chart: prometheus-25.8.2
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: prometheus
-  name: 25.0-prometheus-server
+  name: stable-prometheus-server
   namespace: default
 spec:
   accessModes:
@@ -485,9 +485,9 @@ metadata:
     app.kubernetes.io/component: metrics
     app.kubernetes.io/part-of: kube-state-metrics
     app.kubernetes.io/name: kube-state-metrics
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: "2.10.1"
-  name: 25.0-kube-state-metrics
+  name: stable-kube-state-metrics
 rules:
 
 - apiGroups: ["certificates.k8s.io"]
@@ -637,12 +637,12 @@ metadata:
   labels:
     app.kubernetes.io/component: server
     app.kubernetes.io/name: prometheus
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: v2.48.1
     helm.sh/chart: prometheus-25.8.2
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: prometheus
-  name: 25.0-prometheus-server
+  name: stable-prometheus-server
 rules:
   - apiGroups:
       - ""
@@ -692,16 +692,16 @@ metadata:
     app.kubernetes.io/component: metrics
     app.kubernetes.io/part-of: kube-state-metrics
     app.kubernetes.io/name: kube-state-metrics
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: "2.10.1"
-  name: 25.0-kube-state-metrics
+  name: stable-kube-state-metrics
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: 25.0-kube-state-metrics
+  name: stable-kube-state-metrics
 subjects:
 - kind: ServiceAccount
-  name: 25.0-kube-state-metrics
+  name: stable-kube-state-metrics
   namespace: default
 ---
 # Source: prometheus/templates/clusterrolebinding.yaml
@@ -711,30 +711,30 @@ metadata:
   labels:
     app.kubernetes.io/component: server
     app.kubernetes.io/name: prometheus
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: v2.48.1
     helm.sh/chart: prometheus-25.8.2
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: prometheus
-  name: 25.0-prometheus-server
+  name: stable-prometheus-server
 subjects:
   - kind: ServiceAccount
-    name: 25.0-prometheus-server
+    name: stable-prometheus-server
     namespace: default
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: 25.0-prometheus-server
+  name: stable-prometheus-server
 ---
 # Source: prometheus/charts/alertmanager/templates/services.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: 25.0-alertmanager
+  name: stable-alertmanager
   labels:
     helm.sh/chart: alertmanager-1.7.0
     app.kubernetes.io/name: alertmanager
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: "v0.26.0"
     app.kubernetes.io/managed-by: Helm
   namespace: default
@@ -747,17 +747,17 @@ spec:
       name: http
   selector:
     app.kubernetes.io/name: alertmanager
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
 ---
 # Source: prometheus/charts/alertmanager/templates/services.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: 25.0-alertmanager-headless
+  name: stable-alertmanager-headless
   labels:
     helm.sh/chart: alertmanager-1.7.0
     app.kubernetes.io/name: alertmanager
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: "v0.26.0"
     app.kubernetes.io/managed-by: Helm
   namespace: default
@@ -770,13 +770,13 @@ spec:
       name: http
   selector:
     app.kubernetes.io/name: alertmanager
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
 ---
 # Source: prometheus/charts/kube-state-metrics/templates/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: 25.0-kube-state-metrics
+  name: stable-kube-state-metrics
   namespace: default
   labels:    
     helm.sh/chart: kube-state-metrics-5.15.2
@@ -784,7 +784,7 @@ metadata:
     app.kubernetes.io/component: metrics
     app.kubernetes.io/part-of: kube-state-metrics
     app.kubernetes.io/name: kube-state-metrics
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: "2.10.1"
   annotations:
     prometheus.io/scrape: 'true'
@@ -798,13 +798,13 @@ spec:
   
   selector:    
     app.kubernetes.io/name: kube-state-metrics
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
 ---
 # Source: prometheus/charts/prometheus-node-exporter/templates/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: 25.0-prometheus-node-exporter
+  name: stable-prometheus-node-exporter
   namespace: default
   labels:
     helm.sh/chart: prometheus-node-exporter-4.24.0
@@ -812,7 +812,7 @@ metadata:
     app.kubernetes.io/component: metrics
     app.kubernetes.io/part-of: prometheus-node-exporter
     app.kubernetes.io/name: prometheus-node-exporter
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: "1.7.0"
   annotations:
     prometheus.io/scrape: "true"
@@ -825,7 +825,7 @@ spec:
       name: metrics
   selector:
     app.kubernetes.io/name: prometheus-node-exporter
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
 ---
 # Source: prometheus/charts/prometheus-pushgateway/templates/service.yaml
 apiVersion: v1
@@ -836,10 +836,10 @@ metadata:
   labels:
     helm.sh/chart: prometheus-pushgateway-2.4.2
     app.kubernetes.io/name: prometheus-pushgateway
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: "v1.6.2"
     app.kubernetes.io/managed-by: Helm
-  name: 25.0-prometheus-pushgateway
+  name: stable-prometheus-pushgateway
   namespace: default
 spec:
   type: ClusterIP
@@ -850,7 +850,7 @@ spec:
       name: http
   selector:
     app.kubernetes.io/name: prometheus-pushgateway
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
 ---
 # Source: prometheus/templates/service.yaml
 apiVersion: v1
@@ -859,12 +859,12 @@ metadata:
   labels:
     app.kubernetes.io/component: server
     app.kubernetes.io/name: prometheus
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: v2.48.1
     helm.sh/chart: prometheus-25.8.2
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: prometheus
-  name: 25.0-prometheus-server
+  name: stable-prometheus-server
   namespace: default
 spec:
   ports:
@@ -875,7 +875,7 @@ spec:
   selector:
     app.kubernetes.io/component: server
     app.kubernetes.io/name: prometheus
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
   sessionAffinity: None
   type: "ClusterIP"
 ---
@@ -883,7 +883,7 @@ spec:
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: 25.0-prometheus-node-exporter
+  name: stable-prometheus-node-exporter
   namespace: default
   labels:
     helm.sh/chart: prometheus-node-exporter-4.24.0
@@ -891,13 +891,13 @@ metadata:
     app.kubernetes.io/component: metrics
     app.kubernetes.io/part-of: prometheus-node-exporter
     app.kubernetes.io/name: prometheus-node-exporter
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: "1.7.0"
 spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: prometheus-node-exporter
-      app.kubernetes.io/instance: 25.0
+      app.kubernetes.io/instance: stable
   revisionHistoryLimit: 10
   updateStrategy:
     rollingUpdate:
@@ -913,7 +913,7 @@ spec:
         app.kubernetes.io/component: metrics
         app.kubernetes.io/part-of: prometheus-node-exporter
         app.kubernetes.io/name: prometheus-node-exporter
-        app.kubernetes.io/instance: 25.0
+        app.kubernetes.io/instance: stable
         app.kubernetes.io/version: "1.7.0"
     spec:
       automountServiceAccountToken: false
@@ -922,7 +922,7 @@ spec:
         runAsGroup: 65534
         runAsNonRoot: true
         runAsUser: 65534
-      serviceAccountName: 25.0-prometheus-node-exporter
+      serviceAccountName: stable-prometheus-node-exporter
       containers:
         - name: node-exporter
           image: quay.io/prometheus/node-exporter:v1.7.0
@@ -998,7 +998,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: 25.0-kube-state-metrics
+  name: stable-kube-state-metrics
   namespace: default
   labels:    
     helm.sh/chart: kube-state-metrics-5.15.2
@@ -1006,13 +1006,13 @@ metadata:
     app.kubernetes.io/component: metrics
     app.kubernetes.io/part-of: kube-state-metrics
     app.kubernetes.io/name: kube-state-metrics
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: "2.10.1"
 spec:
   selector:
     matchLabels:      
       app.kubernetes.io/name: kube-state-metrics
-      app.kubernetes.io/instance: 25.0
+      app.kubernetes.io/instance: stable
   replicas: 1
   strategy:
     type: RollingUpdate
@@ -1025,11 +1025,11 @@ spec:
         app.kubernetes.io/component: metrics
         app.kubernetes.io/part-of: kube-state-metrics
         app.kubernetes.io/name: kube-state-metrics
-        app.kubernetes.io/instance: 25.0
+        app.kubernetes.io/instance: stable
         app.kubernetes.io/version: "2.10.1"
     spec:
       hostNetwork: false
-      serviceAccountName: 25.0-kube-state-metrics
+      serviceAccountName: stable-kube-state-metrics
       securityContext:
         fsGroup: 65534
         runAsGroup: 65534
@@ -1072,10 +1072,10 @@ metadata:
   labels:
     helm.sh/chart: prometheus-pushgateway-2.4.2
     app.kubernetes.io/name: prometheus-pushgateway
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: "v1.6.2"
     app.kubernetes.io/managed-by: Helm
-  name: 25.0-prometheus-pushgateway
+  name: stable-prometheus-pushgateway
   namespace: default
 spec:
   replicas: 1
@@ -1084,17 +1084,17 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: prometheus-pushgateway
-      app.kubernetes.io/instance: 25.0
+      app.kubernetes.io/instance: stable
   template:
     metadata:
       labels:
         helm.sh/chart: prometheus-pushgateway-2.4.2
         app.kubernetes.io/name: prometheus-pushgateway
-        app.kubernetes.io/instance: 25.0
+        app.kubernetes.io/instance: stable
         app.kubernetes.io/version: "v1.6.2"
         app.kubernetes.io/managed-by: Helm
     spec:
-      serviceAccountName: 25.0-prometheus-pushgateway
+      serviceAccountName: stable-prometheus-pushgateway
       containers:
         - name: pushgateway
           image: "quay.io/prometheus/pushgateway:v1.6.2"
@@ -1134,19 +1134,19 @@ metadata:
   labels:
     app.kubernetes.io/component: server
     app.kubernetes.io/name: prometheus
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: v2.48.1
     helm.sh/chart: prometheus-25.8.2
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: prometheus
-  name: 25.0-prometheus-server
+  name: stable-prometheus-server
   namespace: default
 spec:
   selector:
     matchLabels:
       app.kubernetes.io/component: server
       app.kubernetes.io/name: prometheus
-      app.kubernetes.io/instance: 25.0
+      app.kubernetes.io/instance: stable
   replicas: 1
   revisionHistoryLimit: 10
   strategy:
@@ -1157,14 +1157,14 @@ spec:
       labels:
         app.kubernetes.io/component: server
         app.kubernetes.io/name: prometheus
-        app.kubernetes.io/instance: 25.0
+        app.kubernetes.io/instance: stable
         app.kubernetes.io/version: v2.48.1
         helm.sh/chart: prometheus-25.8.2
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: prometheus
     spec:
       enableServiceLinks: true
-      serviceAccountName: 25.0-prometheus-server
+      serviceAccountName: stable-prometheus-server
       containers:
         - name: prometheus-server-configmap-reload
           image: "quay.io/prometheus-operator/prometheus-config-reloader:v0.70.0"
@@ -1225,20 +1225,20 @@ spec:
       volumes:
         - name: config-volume
           configMap:
-            name: 25.0-prometheus-server
+            name: stable-prometheus-server
         - name: storage-volume
           persistentVolumeClaim:
-            claimName: 25.0-prometheus-server
+            claimName: stable-prometheus-server
 ---
 # Source: prometheus/charts/alertmanager/templates/statefulset.yaml
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: 25.0-alertmanager
+  name: stable-alertmanager
   labels:
     helm.sh/chart: alertmanager-1.7.0
     app.kubernetes.io/name: alertmanager
-    app.kubernetes.io/instance: 25.0
+    app.kubernetes.io/instance: stable
     app.kubernetes.io/version: "v0.26.0"
     app.kubernetes.io/managed-by: Helm
   namespace: default
@@ -1248,18 +1248,18 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: alertmanager
-      app.kubernetes.io/instance: 25.0
-  serviceName: 25.0-alertmanager-headless
+      app.kubernetes.io/instance: stable
+  serviceName: stable-alertmanager-headless
   template:
     metadata:
       labels:
         app.kubernetes.io/name: alertmanager
-        app.kubernetes.io/instance: 25.0
+        app.kubernetes.io/instance: stable
       annotations:
-        checksum/config: 993c5948fd7ec6cff0b9ffa3802c50d493f49048c3af50b1dec942fcdf984200
+        checksum/config: 5da908a2b868acc4db4601be93a400f7749ea7760282dea288fd397fdc7ebea0
     spec:
       automountServiceAccountToken: true
-      serviceAccountName: 25.0-alertmanager
+      serviceAccountName: stable-alertmanager
       securityContext:
         fsGroup: 65534
         runAsGroup: 65534
@@ -1304,7 +1304,7 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: 25.0-alertmanager
+            name: stable-alertmanager
   volumeClaimTemplates:
     - metadata:
         name: storage
