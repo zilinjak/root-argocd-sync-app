@@ -10,4 +10,7 @@ spec:
     - name: argocd-server-port
       port: 6001
       targetPort: 8080
+    - name: argocd-server-port-2
+      port: 6002
+      targetPort: 8083
   type: LoadBalancer
