@@ -1,9 +1,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: multi-app-set
-  namespace: your-namespace
+  name: cluster-addons
+  namespace: argocd
 spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
   generators:
   - git:
       repoURL: 'https://github.com/zilinjak/artemis-mq-kafka.git'  # Replace with your Git repository URL
