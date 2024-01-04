@@ -14,16 +14,16 @@ spec:
       - path: "*"
   template:
     metadata:
-      name: '{{path.basename}}-app'
-      namespace: '{{path.basename}}'
+      name: '{{.path.basename}}-app'
+      namespace: '{{.path.basename}}'
     spec:
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{path.basename}}'
+        namespace: '{{.path.basename}}'
       project: default
       source:
         repoURL: 'https://github.com/zilinjak/artemis-mq-kafka.git'  # Replace with your Git repository URL
-        path: '{{path.path}}'
+        path: '{{.path.path}}'
         targetRevision: HEAD
       syncPolicy:
         syncOptions:
